@@ -1,0 +1,21 @@
+name: Simulation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  testbench:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Compile full design
+        run: iverilog -g2005 -o top_check rtl/*.v
+      - name: Run self-checking FSM testbench
+        run: |
+          iverilog -g2005 -o vend_tb sim/tb_vending_fsm.v rtl/NSL.v
+          vvp vend_tb | tee sim.log
+          grep -q "ALL TESTS PASSED" sim.log
