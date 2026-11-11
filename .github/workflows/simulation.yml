@@ -8,12 +8,18 @@ on:
 jobs:
   testbench:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
-      - name: Install Icarus Verilog
-        run: sudo apt-get update -o Acquire::Retries=3 && sudo apt-get install -y --no-install-recommends iverilog
+
+      - name: Install Icarus Verilog (OSS CAD Suite)
+        uses: YosysHQ/setup-oss-cad-suite@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Compile full design
         run: iverilog -g2005 -o top_check rtl/*.v
+
       - name: Run self-checking FSM testbench
         run: |
           iverilog -g2005 -o vend_tb sim/tb_vending_fsm.v rtl/NSL.v
