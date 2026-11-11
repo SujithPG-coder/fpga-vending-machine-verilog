@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/Language-Verilog-blue" alt="Verilog">
   <img src="https://img.shields.io/badge/FPGA-Basys3%20(Artix--7)-red" alt="Basys3">
   <img src="https://img.shields.io/badge/Tools-Vivado%20%7C%20ModelSim%20%7C%20Icarus-orange" alt="Tools">
-  <img src="https://img.shields.io/badge/Tests-passing-brightgreen" alt="Tests">
+  <a href="https://github.com/SujithPG-coder/fpga-vending-machine-verilog/actions/workflows/simulation.yml"><img src="https://github.com/SujithPG-coder/fpga-vending-machine-verilog/actions/workflows/simulation.yml/badge.svg" alt="Simulation"></a>
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
 
