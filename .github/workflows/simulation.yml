@@ -7,11 +7,11 @@ on:
 
 jobs:
   testbench:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install Icarus Verilog
-        run: sudo apt-get update && sudo apt-get install -y iverilog
+        run: sudo apt-get update -o Acquire::Retries=3 && sudo apt-get install -y --no-install-recommends iverilog
       - name: Compile full design
         run: iverilog -g2005 -o top_check rtl/*.v
       - name: Run self-checking FSM testbench
